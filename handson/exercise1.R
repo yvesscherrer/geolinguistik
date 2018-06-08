@@ -116,6 +116,10 @@ head(df)
 # Wie verändert sich die Karte, wenn sie coord_map() weglassen?
 ggplot() + geom_point(data=df, aes(x=LONG, y=LAT), shape=19, size=3) + coord_map()
 
+# Was bedeutet "shape=19"?
+# Die von R unterstützten Symbolarten sind hier aufgelistet:
+# http://www.cookbook-r.com/Graphs/Shapes_and_line_types/
+
 # Anstatt LONG und LAT können Sie auch die Felder POINT_X und POINT_Y benutzen
 # (schweizerisches Koordinatensystem CH1903)
 # Diese Projektion ist aber nicht in coord_map() definiert

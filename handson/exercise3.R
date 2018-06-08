@@ -68,12 +68,14 @@ ggmap(backgr) +
 
 library(scales)
 
+# geom_label: Kartentitel
 # alpha=0.7: Polygone werden halbtransparent, Hintergrund scheint durch
-# palette="RdBu": Klassischer Heat-Map-Farbverlauf
+# palette="RdBu": Klassischer Heat-Map-Farbverlauf (siehe http://colorbrewer2.org)
 # breaks=pretty_breaks(n=10): teilt die Daten automatisch in 10 Farbklassen ein
 # labels=percent: fügt Prozentzeichen in die Legende ein
 # theme: Position und Formatierung der Legende und Achsen
 g = ggmap(backgr) +
+  geom_label(aes(x = -3.5, y = 50.8, label = "péguer"), size=8, fill = "transparent", color="black", alpha=1) +
   geom_polygon(data=fr_joined, aes(x=long, y=lat, group=group, fill=PEGUER), alpha=0.7, color="transparent", size=0.4) + 
   coord_map() +
   scale_fill_distiller(palette="RdBu", breaks=pretty_breaks(n=10), labels=percent) + 
@@ -98,6 +100,5 @@ g = ggmap(backgr) +
 g
 
 # Speicherung
+# Achtung: Legenden werden u.U. anders dargestellt als in der Vorschau!
 ggsave(g, filename="peguer.png", scale=1, width=39.78, height=26.59, units="cm")
-
-## Legendentitel hinzufügen

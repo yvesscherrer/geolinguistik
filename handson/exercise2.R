@@ -54,6 +54,8 @@ ggmap(backgr) +
 
 ### 4 - Farben manuell wählen
 
+# Die von R unterstützten Farbnamen sind hier aufgelistet:
+# http://sape.inf.usi.ch/quick-reference/ggplot2/colour
 farben = c("nüme"="tomato", "nimme"="red3", "nümm"="tan1", "nimmi"="darkorange1",
            "nümee"="slateblue1", "nimee"="slateblue4", "nütmee"="palegreen1", "nitmee"="palegreen4",
            "nomme"="violetred1", "numme"="darkorchid")
@@ -86,4 +88,5 @@ g = ggmap(backgr) +
 g
 
 # Speicherung
+# Achtung: Legenden werden u.U. anders dargestellt als in der Vorschau!
 ggsave(g, filename="nichtmehr.png", scale=1, width=39.78, height=26.59, units="cm")
