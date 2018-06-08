@@ -50,9 +50,11 @@ land = spTransform(land, CRS("+proj=longlat +datum=WGS84"))
 sprgr = readOGR(dsn="data", layer="chde")
 sprgr = spTransform(sprgr, CRS("+proj=longlat +datum=WGS84"))
 
+# "group=group" ist notwendig für Polygone, die aus mehreren Teilpolygonen bestehen (z.B. Exklaven)
+# Was passiert, wenn man dieses Attribut weglässt?
 ggmap(backgr) +
-  geom_polygon(data=land, aes(x=long, y=lat), fill="transparent", color="black", size=1) +
-  geom_polygon(data=sprgr, aes(x=long, y=lat), fill="transparent", color="black", size=1) +
+  geom_polygon(data=land, aes(x=long, y=lat, group=group), fill="transparent", color="black", size=1) +
+  geom_polygon(data=sprgr, aes(x=long, y=lat, group=group), fill="transparent", color="black", size=1) +
   geom_point(data=sds_joined, aes(x=LONG, y=LAT, color=VARIANT), shape=19, size=2) +
   coord_map()
 
@@ -66,8 +68,8 @@ farben = c("nüme"="tomato", "nimme"="red3", "nümm"="tan1", "nimmi"="darkorange1"
            "nomme"="violetred1", "numme"="darkorchid")
 
 ggmap(backgr) +
-  geom_polygon(data=land, aes(x=long, y=lat), fill="transparent", color="black", size=1) +
-  geom_polygon(data=sprgr, aes(x=long, y=lat), fill="transparent", color="black", size=1) +
+  geom_polygon(data=land, aes(x=long, y=lat, group=group), fill="transparent", color="black", size=1) +
+  geom_polygon(data=sprgr, aes(x=long, y=lat, group=group), fill="transparent", color="black", size=1) +
   geom_point(data=sds_joined, aes(x=LONG, y=LAT, color=VARIANT), shape=19, size=2) +
   coord_map() +
   scale_color_manual(values=farben)
@@ -77,8 +79,8 @@ ggmap(backgr) +
 
 # Grafik in einer Variablen speichern anstatt direkt auszuführen (d.h. darzustellen)
 g = ggmap(backgr) +
-  geom_polygon(data=land, aes(x=long, y=lat), fill="transparent", color="black", size=1) +
-  geom_polygon(data=sprgr, aes(x=long, y=lat), fill="transparent", color="black", size=1) +
+  geom_polygon(data=land, aes(x=long, y=lat, group=group), fill="transparent", color="black", size=1) +
+  geom_polygon(data=sprgr, aes(x=long, y=lat, group=group), fill="transparent", color="black", size=1) +
   geom_point(data=sds_joined, aes(x=LONG, y=LAT, color=VARIANT), shape=19, size=2) +
   coord_map() +
   scale_color_manual(values=farben) +

@@ -25,8 +25,8 @@ attr_merged = merge(x=punkte, y=attr, by="SDS_CODE")
 # weisser Hintergrund
 # wie sieht die Grafik für die anderen Attribute aus?
 ggplot() +
-  geom_polygon(data=land, aes(x=long, y=lat), fill="transparent", color="black", size=1) +
-  geom_polygon(data=sprgr, aes(x=long, y=lat), fill="gray80", color="black", size=1) +
+  geom_polygon(data=land, aes(x=long, y=lat, group=group), fill="transparent", color="black", size=1) +
+  geom_polygon(data=sprgr, aes(x=long, y=lat, group=group), fill="gray80", color="transparent") +
   geom_point(data=attr_merged, aes(x=LONG, y=LAT, color=ENER), shape=19, size=3) +
   coord_map()
 
@@ -35,22 +35,23 @@ ggplot() +
 
 library(scatterpie)
 
+# r: Radius (kann konstant sein oder eine Funktion einer Spalte)
+# cols: relevante Spalten der Datenmatrix
 ggplot() +
-  geom_polygon(data=land, aes(x=long, y=lat), fill="transparent", color="black", size=1) +
-  geom_polygon(data=sprgr, aes(x=long, y=lat), fill="gray80", color="black", size=1) +
-  geom_scatterpie(aes(x=LONG, y=LAT), data=attr_merged, cols=c("ENER", "ENE", "EN"), size=0.5) +
+  geom_polygon(data=land, aes(x=long, y=lat, group=group), fill="transparent", color="black", size=1) +
+  geom_polygon(data=sprgr, aes(x=long, y=lat, group=group), fill="gray80", color="transparent") +
+  geom_scatterpie(aes(x=LONG, y=LAT, r=0.03), data=attr_merged, cols=c("ENER", "ENE", "EN")) +
   coord_map()
 
 # Die Dokumentation von "scatterpie" ist ein bisschen dürftig...
-# Warum sind die Diagramme verzogen?
-# Wie kann man die Grösse der Diagramme ändern?
+# Warum sind die Diagramme verzogen? Wie kann man die Farben ändern?
 
 
 ### 3 - Kosmetische Verbesserungen
 
 g = ggplot() +
-  geom_polygon(data=land, aes(x=long, y=lat), fill="transparent", color="black", size=1) +
-  geom_polygon(data=sprgr, aes(x=long, y=lat), fill="gray80", color="black", size=1) +
+  geom_polygon(data=land, aes(x=long, y=lat, group=group), fill="transparent", color="black", size=1) +
+  geom_polygon(data=sprgr, aes(x=long, y=lat, group=group), fill="gray80", color="transparent") +
   geom_scatterpie(aes(x=LONG, y=LAT), data=attr_merged, cols=c("ENER", "ENE", "EN"), size=0.5, color="gray30") +
   coord_map() +
   theme(panel.background=element_rect(fill = "white", colour = "white"),
