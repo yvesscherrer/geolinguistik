@@ -30,6 +30,9 @@ install.packages("Cairo")
 # Scales: Klassifizierung von Ordinaldaten
 install.packages("scales")
 
+# scatterpie: Tortendiagramme
+install.packages("scatterpie")
+
 # deldir: Voronoi-Diagramme
 install.packages("deldir")
 

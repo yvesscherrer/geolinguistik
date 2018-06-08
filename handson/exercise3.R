@@ -46,7 +46,8 @@ head(fr_joined)
 
 # Darstellung: Polygonfüllung nach PEGUER-Wert, Polygongrenzen transparent
 ggplot() +
-  geom_polygon(data=fr_joined, aes(x=long, y=lat, group=group, fill=PEGUER), color="transparent", size=0.4) + 
+  geom_polygon(data=fr_joined, aes(x=long, y=lat, group=group, fill=PEGUER),
+               color="transparent", size=0.4) + 
   coord_map()
 
 
@@ -60,7 +61,8 @@ backgr = get_stamenmap(fr, maptype="terrain-background", color="bw", zoom = 6)
 
 # anstatt ggplot() nehmen wir nun ggmap() mit dem Hintergrundbild
 ggmap(backgr) +
-  geom_polygon(data=fr_joined, aes(x=long, y=lat, group=group, fill=PEGUER), color="transparent", size=0.4) + 
+  geom_polygon(data=fr_joined, aes(x=long, y=lat, group=group, fill=PEGUER),
+               color="transparent", size=0.4) + 
   coord_map()
 
 
@@ -75,8 +77,10 @@ library(scales)
 # labels=percent: fügt Prozentzeichen in die Legende ein
 # theme: Position und Formatierung der Legende und Achsen
 g = ggmap(backgr) +
-  geom_label(aes(x = -3.5, y = 50.8, label = "péguer"), size=8, fill = "transparent", color="black", alpha=1) +
-  geom_polygon(data=fr_joined, aes(x=long, y=lat, group=group, fill=PEGUER), alpha=0.7, color="transparent", size=0.4) + 
+  geom_label(aes(x = -3.5, y = 50.8, label = "péguer"), size=8, fill = "transparent",
+             color="black", alpha=1) +
+  geom_polygon(data=fr_joined, aes(x=long, y=lat, group=group, fill=PEGUER), alpha=0.7,
+               color="transparent", size=0.4) + 
   coord_map() +
   scale_fill_distiller(palette="RdBu", breaks=pretty_breaks(n=10), labels=percent) + 
   theme(legend.justification=c(0,0),

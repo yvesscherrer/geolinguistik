@@ -14,12 +14,17 @@ sds_punkte = read.table("data/sds-ortsnetz.txt", header=T, sep="\t", quote="", d
 # Attribute laden
 sds_attr = read.table("data/4168_nicht_mehr_categ.txt", header=T, sep="\t", quote="", dec=".", fileEncoding="utf-8")
 
+# Wie heissen die verschiedenen Felder der beiden Tabellen?
+# Welches Feld ist der Schlüssel, der die beiden Tabellen verbindet?
+
 # Geodaten mit Attributen verbinden ("inner join" in Datenbank-Terminologie)
 sds_joined = merge(x=sds_punkte, y=sds_attr, by="SDS_CODE")
 head(sds_joined)
 
 # Darstellung, je eine andere Farbe pro Variante
-ggplot() + geom_point(data=sds_joined, aes(x=LONG, y=LAT, color=VARIANT), shape=19, size=3) + coord_map()
+ggplot() +
+  geom_point(data=sds_joined, aes(x=LONG, y=LAT, color=VARIANT), shape=19, size=3) +
+  coord_map()
 
 
 ### 2 - Kartenhintergrund mit ggmap hinzufügen
